@@ -1,0 +1,40 @@
+group 'com.selenium.template'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.testng:testng:6.11'
+    compile 'org.seleniumhq.selenium:selenium-java:3.4.0'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+}
+
+task testSome(type: Test) {
+    useTestNG{
+        suites 'src/test/resources/testng-some.xml'
+    }
+    if (project.hasProperty('browser')){
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')){
+        systemProperty 'target', "${target}"
+    }
+}
+
+task testAnother(type: Test) {
+    useTestNG{
+        suites 'src/test/resources/testng-another.xml'
+    }
+    if (project.hasProperty('browser')){
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')){
+        systemProperty 'target', "${target}"
+    }
+}
