@@ -9,10 +9,16 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    agent
+}
+
 dependencies {
     compile 'org.testng:testng:6.11'
     compile 'org.seleniumhq.selenium:selenium-java:3.4.0'
     compile 'ch.qos.logback:logback-classic:1.2.3'
+    agent "org.aspectj:aspectjweaver:1.8.10"
+    compile 'io.qameta.allure:allure-testng:2.0-BETA10'
 }
 
 task testSome(type: Test) {
@@ -25,6 +31,13 @@ task testSome(type: Test) {
     if (project.hasProperty('target')){
         systemProperty 'target', "${target}"
     }
+    systemProperty 'allure.results.directory', 'build/allure-results'
+    systemProperty 'allure.link.issue.pattern', 'https://github.com/allure-framework/allure-docs/issues/{}'
+    systemProperty 'allure.link.tms.pattern', 'https://github.com/allure-framework/allure-docs/issues/{}'
+}
+
+testSome.doFirst {
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
 }
 
 task testAnother(type: Test) {
@@ -37,4 +50,11 @@ task testAnother(type: Test) {
     if (project.hasProperty('target')){
         systemProperty 'target', "${target}"
     }
+    systemProperty 'allure.results.directory', 'build/allure-results'
+    systemProperty 'allure.link.issue.pattern', 'https://github.com/allure-framework/allure-docs/issues/{}'
+    systemProperty 'allure.link.tms.pattern', 'https://github.com/allure-framework/allure-docs/issues/{}'
+}
+
+testAnother.doFirst {
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
 }
