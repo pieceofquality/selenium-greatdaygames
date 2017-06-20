@@ -11,11 +11,9 @@ public class SomeTests1 extends TestBase {
 
     @Test
     public void testSomething(){
-        logger.info("start test testSomething");
         app.getSomeHelper().initMethod();
         app.getSomeHelper().fillMethod(new SomeData("example@mail.com", "test"));
         app.getSomeHelper().submitMethod();
         app.getSomeHelper().confirmMethod();
-        logger.info("stop test testSomething");
     }
 }

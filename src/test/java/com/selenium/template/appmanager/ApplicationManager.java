@@ -1,5 +1,7 @@
 package com.selenium.template.appmanager;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -42,19 +44,22 @@ public class ApplicationManager {
 
         wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         wd.get(properties.getProperty("web.baseUrl"));
-        sessionHelper = new SessionHelper(wd);
+//        sessionHelper = new SessionHelper(wd);
         someHelper = new SomeHelper(wd);
-        sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
+//        sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
 
-    }
-    public SomeHelper getSomeHelper() {
-        return someHelper;
     }
 
     public void stop() {
         wd.quit();
     }
 
+    public SomeHelper getSomeHelper() {
+        return someHelper;
+    }
 
+    public byte[] takeScreenshot() {
+        return ((TakesScreenshot) wd).getScreenshotAs(OutputType.BYTES);
+    }
 
 }
