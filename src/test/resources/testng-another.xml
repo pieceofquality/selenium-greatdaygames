@@ -4,7 +4,7 @@
 
     <test name="Another">
         <classes>
-            <class name="com.selenium.template.tests.AnotherTests"/>
+            <class name="com.selenium.template.tests.GameTests"/>
         </classes>
     </test>
 </suite>

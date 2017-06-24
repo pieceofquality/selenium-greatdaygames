@@ -3,8 +3,8 @@
 <suite name="Suite1" verbose="1" >
     <test name="Some" >
         <classes>
-            <class name="com.selenium.template.tests.SomeTests" />
-            <class name="com.selenium.template.tests.SomeTests1" />
+            <class name="com.selenium.template.tests.ProfileTests" />
+            <class name="com.selenium.template.tests.LeaderboardTests" />
         </classes>
     </test>
 </suite>

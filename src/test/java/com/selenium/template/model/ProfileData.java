@@ -1,10 +1,10 @@
 package com.selenium.template.model;
 
-public class SomeData {
+public class ProfileData {
     private final String to;
     private final String subject;
 
-    public SomeData(String to, String subject) {
+    public ProfileData(String to, String subject) {
         this.to = to;
         this.subject = subject;
     }

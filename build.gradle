@@ -1,4 +1,4 @@
-group 'com.selenium.template'
+group 'com.selenium.greatdaygames'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'

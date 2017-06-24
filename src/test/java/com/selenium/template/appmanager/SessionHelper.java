@@ -13,8 +13,9 @@ public class SessionHelper extends HelperBase {
 
     //Authorization method
     public void login(String username, String password) {
-        type(By.id("username"), username);
-        type(By.id("password"), password);
-        click(By.id("button"));
+        click(By.cssSelector(".LB_sign_in.colr .colr"));
+        type(By.id("popupLogin$email"), username);
+        type(By.id("popupLogin$password"), password);
+        click(By.cssSelector("input[value='login']"));
     }
 }

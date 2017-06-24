@@ -21,7 +21,8 @@ public class ApplicationManager {
     WebDriver wd;
 
     private SessionHelper sessionHelper;
-    private SomeHelper someHelper;
+    private ProfileHelper profileHelper;
+    private NavigationHelper navigationHelper;
     private String browser;
 
     public ApplicationManager(String browser) {
@@ -45,8 +46,9 @@ public class ApplicationManager {
         wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         wd.get(properties.getProperty("web.baseUrl"));
 //        sessionHelper = new SessionHelper(wd);
-        someHelper = new SomeHelper(wd);
+        profileHelper = new ProfileHelper(wd);
 //        sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
+        navigationHelper = new NavigationHelper(wd);
 
     }
 
@@ -54,12 +56,16 @@ public class ApplicationManager {
         wd.quit();
     }
 
-    public SomeHelper getSomeHelper() {
-        return someHelper;
+    public ProfileHelper profile() {
+        return profileHelper;
     }
 
     public byte[] takeScreenshot() {
         return ((TakesScreenshot) wd).getScreenshotAs(OutputType.BYTES);
     }
 
+
+    public NavigationHelper goTo() {
+        return navigationHelper;
+    }
 }
